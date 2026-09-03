@@ -4,18 +4,14 @@ using System.Collections.Generic;
 
 public class BoardAppear : MonoBehaviour
 {
-    [SerializeField] BoardData boardData;
-    private List<GameObject> boardList;
+    private BoardData boardData;
+    private List<GameObject> boardList = new List<GameObject>();
     [SerializeField] GameObject ground;
-
-    private void Start()
-    {
-        boardList = new List<GameObject>();
-        DrawBoard(boardData);
-    }
 
     public void DrawBoard(BoardData board)
     {
+        DeleteBoard();
+        boardData = board;
         for (int x = 0; x < board.BoardSize.x; x++)
         {
             for (int y = 0; y < board.BoardSize.y; y++)
@@ -25,7 +21,7 @@ public class BoardAppear : MonoBehaviour
         }
     }
 
-    public void DeleteBoard(BoardData board)
+    public void DeleteBoard()
     {
         for(int i = boardList.Count - 1; i >= 0; i--)
         {
@@ -38,6 +34,6 @@ public class BoardAppear : MonoBehaviour
         float posX = (x - (boardData.BoardSize.x - 1) / 2) * boardData.CellDistance.x;
         float posY = (y - (boardData.BoardSize.y - 1) / 2) * boardData.CellDistance.y;
 
-        return new Vector3(posX, 0,  posY);
+        return new Vector3(posX, 0, posY);
     }
 }

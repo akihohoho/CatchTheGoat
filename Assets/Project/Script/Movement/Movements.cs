@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 
 public class Movements : MonoBehaviour
@@ -7,11 +6,13 @@ public class Movements : MonoBehaviour
     private Vector2 startPos;
     private InputActions playerControls;
     [SerializeField] private float holdDistance = 20f;
+    [SerializeField] private float startTime;
+    //[SerializeField] ObstacleLogic obsLogic;
 
     //private InputAction pressAction;
     //private InputAction positionAction;
 
-    private SwipeDirection currentSwipe = SwipeDirection.none;
+    private MoveDirection currentSwipe = MoveDirection.none;
 
     private void Awake()
     { 
@@ -43,6 +44,7 @@ public class Movements : MonoBehaviour
     private void StartTap(InputAction.CallbackContext cxt)
     {
         startPos = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
+        startTime = Time.time;
         Debug.Log("Bắt đầu Tap tại tọa độ: " + startPos);
     }
 
@@ -53,13 +55,13 @@ public class Movements : MonoBehaviour
         CalculateSwipe(endPos);
     }
 
-    private enum SwipeDirection{
-        none,
-        up,
-        down,
-        left,
-        right
-    };
+    //private enum SwipeDirection{
+    //    none,
+    //    up,
+    //    down,
+    //    left,
+    //    right
+    //};
     private void CalculateSwipe(Vector2 endPos)
     {
         Vector2 delta = endPos - startPos;
@@ -68,17 +70,31 @@ public class Movements : MonoBehaviour
 
             if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
             {
-                currentSwipe = delta.x > 0 ? SwipeDirection.right : SwipeDirection.left;
+                currentSwipe = delta.x > 0 ? MoveDirection.right : MoveDirection.left;
             }
             else
             {
-                currentSwipe = delta.y > 0 ? SwipeDirection.up : SwipeDirection.down;
+                currentSwipe = delta.y > 0 ? MoveDirection.up : MoveDirection.down;
             }
             Debug.Log("Đang vuốt hướng " + currentSwipe);
         }
+        else if(Time.time - startTime <= 0.2f)
+        {
+            // TODO: transform.postition hay startPos/endPos?
+            Ray ray = Camera.main.ScreenPointToRay(endPos);
+            // TODO: Xem lai
+            if (Physics.Raycast(ray, out RaycastHit raycastHit))
+            {
+                IInteractable interac = raycastHit.collider.gameObject.GetComponent<IInteractable>();
+                if (interac != null)
+                {
+                    interac.Interact();
+                }
+            }
+        }
         else
         {
-            currentSwipe = SwipeDirection.none;
+            currentSwipe = MoveDirection.none;
             Debug.Log("Không đủ khoảng cách để tính là Swipe!!!");
         }
 

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca53f93e0a812d408395b5d378d0f8e, type: 3}
   m_Name: Obstacle Data
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  shapes: []
+  child:
+  - {x: 0, y: 1}
+  - {x: 1, y: 0}

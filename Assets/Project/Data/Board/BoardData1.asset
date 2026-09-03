@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BoardData1
   m_EditorClassIdentifier: Assembly-CSharp::BoardData
   boardSize: {x: 3, y: 3}
-  cellDistance: {x: 0, y: 0}
+  cellDistance: {x: 1, y: 1}
