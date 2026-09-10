@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54523eba509320b4f890b1463e165011, type: 3}
   m_Name: LevelTest
   m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
+  playerPosition: {x: 0, y: 0}
   levelNumber: 0
   boardData: {fileID: 11400000, guid: aed6b0b4ca5bfa54393aac6c63613da8, type: 2}
   obstacleList:
-  - positionInGrid: {x: 0, y: 0}
+  - positionInGrid: {x: 1, y: 2}
     data: {fileID: 11400000, guid: 35a4e4e9e27112d47b86323d6fce37fb, type: 2}
     rotate: 0

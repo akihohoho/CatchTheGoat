@@ -19,6 +19,7 @@ public class BoardAppear : MonoBehaviour
                 Instantiate(ground, GetWorldPosition(x, y), Quaternion.identity, transform);
             }
         }
+        
     }
 
     public void DeleteBoard()

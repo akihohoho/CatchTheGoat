@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Movements : MonoBehaviour
@@ -7,12 +8,13 @@ public class Movements : MonoBehaviour
     private InputActions playerControls;
     [SerializeField] private float holdDistance = 20f;
     [SerializeField] private float startTime;
+    [SerializeField] private PlayerController player;
     //[SerializeField] ObstacleLogic obsLogic;
 
     //private InputAction pressAction;
     //private InputAction positionAction;
 
-    private MoveDirection currentSwipe = MoveDirection.none;
+    public MoveDirection currentSwipe = MoveDirection.none;
 
     private void Awake()
     { 
@@ -54,14 +56,6 @@ public class Movements : MonoBehaviour
         Debug.Log("Thả tay tại tọa độ: " + endPos);
         CalculateSwipe(endPos);
     }
-
-    //private enum SwipeDirection{
-    //    none,
-    //    up,
-    //    down,
-    //    left,
-    //    right
-    //};
     private void CalculateSwipe(Vector2 endPos)
     {
         Vector2 delta = endPos - startPos;
@@ -76,6 +70,10 @@ public class Movements : MonoBehaviour
             {
                 currentSwipe = delta.y > 0 ? MoveDirection.up : MoveDirection.down;
             }
+            if(player != null)
+            {
+                player.PlayerMovement(currentSwipe);
+            }    
             Debug.Log("Đang vuốt hướng " + currentSwipe);
         }
         else if(Time.time - startTime <= 0.2f)

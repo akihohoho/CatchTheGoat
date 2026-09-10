@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private BoardAppear boardAppear;
     [SerializeField] private ObstacleAppear obstacleAppear;
+    [SerializeField] private PlayerController playerController;
     public void LoadLevel(int levelNumber)
     {
         var level = levelList[levelNumber];
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour
             Vector3 position = boardAppear.GetWorldPosition(obstacle.positionInGrid.x, obstacle.positionInGrid.y);
             obstacleAppear.Spawn(position, obstacle.positionInGrid, obstacle.rotate, obstacle.data.Child);
         }
-      
+
+        playerController.SetUpPlayer();
     }
 }
