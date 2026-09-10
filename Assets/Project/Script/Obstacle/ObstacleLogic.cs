@@ -63,11 +63,31 @@ public class ObstacleLogic : MonoBehaviour, IInteractable
     {
         if (tweenRotate != null && tweenRotate.IsActive() && tweenRotate.IsPlaying()) return;
         GridManager.Instance.UnregisterCells(currentOccupiedCells);
+
+        RotateType nextRotation = (RotateType)(((int)currentRotation + 90) % 360);
+        List<Vector2Int> nextOccupiedCells = GetOccupiedCells(childPosition, root, nextRotation);
+        bool isBlocked = StopRotate(nextOccupiedCells);
+
+        if (isBlocked)
+        {
+            GridManager.Instance.RegisterCells(currentOccupiedCells);
+            return;
+        }
+
         tweenRotate = transform.DOLocalRotate(new Vector3(0f, 90f, 0f), duration, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
 
-        currentRotation = (RotateType)(((float)currentRotation + 90f) % 360);
-        currentOccupiedCells = GetOccupiedCells(childPosition, root, currentRotation);
+        currentOccupiedCells = nextOccupiedCells;
+        currentRotation = nextRotation;
         GridManager.Instance.RegisterCells(currentOccupiedCells);
+    }
+
+    public bool StopRotate(List<Vector2Int> otherCells)
+    {
+        foreach(Vector2Int cell in otherCells)
+        {
+            if(GridManager.Instance.IsOccupied(cell)) return true;
+        }
+        return false;
     }
 
     private Vector2Int RotateOffset(Vector2Int childOffset, RotateType currentRotation)

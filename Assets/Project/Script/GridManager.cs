@@ -18,7 +18,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    HashSet<Vector2Int> OccupiedCells = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> OccupiedCells = new HashSet<Vector2Int>();
 
     public void SetBoard(BoardData board)
     {
@@ -44,7 +44,7 @@ public class GridManager : MonoBehaviour
     public bool IsOutOfBound(Vector2Int curPos)
     {
         if (curPos.x < 0 || curPos.y < 0) return true;
-        if (curPos.x >= boardData.BoardSize.x || curPos.y >= boardData.BoardSize.y) return true;
+        if (curPos.x > boardData.BoardSize.x - 1 || curPos.y > boardData.BoardSize.y - 1) return true;
         return false;
     }
     public void ClearCells()
