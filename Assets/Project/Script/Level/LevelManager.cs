@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     {
         var level = levelList[levelNumber];
         var board = level.BoardData;
+        GridManager.Instance.SetBoard(board);
 
         boardAppear.DrawBoard(board);
 

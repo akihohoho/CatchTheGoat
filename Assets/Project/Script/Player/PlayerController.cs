@@ -31,12 +31,10 @@ public class PlayerController : MonoBehaviour
         };
 
         Vector2Int targetPos = currentGridPos;
-        int safecount = 0;
-
-        while (safecount < 50)
+        bool isBlocked = false;
+        while (!isBlocked)
         {
-            safecount++;
-            bool isBlocked = GridManager.Instance.IsOccupied(targetPos + step);
+            isBlocked = GridManager.Instance.IsOccupied(targetPos + step);
             if (isBlocked) break;
 
             targetPos += step;

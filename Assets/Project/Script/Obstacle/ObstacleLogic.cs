@@ -26,13 +26,16 @@ public class ObstacleLogic : MonoBehaviour, IInteractable
 
     public void SpawnChild()
     {
+        if (currentOccupiedCells != null){
+            GridManager.Instance.UnregisterCells(currentOccupiedCells);
+        }
         ClearChild();
 
         if (childPosition == null) return;
 
         for(int i = 0; i < childPosition.Count; i++)
         {
-            Vector2 rotateOffset = RotateOffset(childPosition[i], currentRotation); // Cap nhat child theo curentRotation
+            Vector2 rotateOffset = RotateOffset(childPosition[i], currentRotation); // Cap nhat child theo currentRotation
             Vector3 position = new Vector3(rotateOffset.x + transform.position.x, transform.position.y, rotateOffset.y + transform.position.z);
 
             currentOccupiedCells = GetOccupiedCells(childPosition, root, currentRotation);
