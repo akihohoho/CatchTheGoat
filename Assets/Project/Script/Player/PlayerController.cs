@@ -51,8 +51,11 @@ public class PlayerController : MonoBehaviour
         Vector3 targetWorldPos = boardAppear.GetWorldPosition(targetPos.x, targetPos.y);
         targetWorldPos.y = 0.5f;
 
-        transform.DOMove(targetWorldPos, 0.2f).SetEase(Ease.Linear).OnComplete(() => isMoving = false);
-        GridManager.Instance.OccupiedCells.Add(currentGridPos);
-
+        transform.DOMove(targetWorldPos, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            isMoving = false;
+            GameManager.Instance.SetPlayerPos(currentGridPos);
+            GridManager.Instance.OccupiedCells.Add(currentGridPos);
+        });
     }
 }

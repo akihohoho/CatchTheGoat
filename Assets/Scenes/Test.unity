@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fda52aef8b5144a847a3acb831e17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
-  boardData: {fileID: 0}
+  boardData: {fileID: 11400000, guid: aed6b0b4ca5bfa54393aac6c63613da8, type: 2}
 --- !u!114 &1180406998
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LevelTest
   m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
   playerPosition: {x: 0, y: 0}
+  goatPosition: {x: 9, y: 0}
   levelNumber: 0
   boardData: {fileID: 11400000, guid: aed6b0b4ca5bfa54393aac6c63613da8, type: 2}
   obstacleList:

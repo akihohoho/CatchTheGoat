@@ -47,13 +47,13 @@ public class Movements : MonoBehaviour
     {
         startPos = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
         startTime = Time.time;
-        Debug.Log("Bắt đầu Tap tại tọa độ: " + startPos);
+        //Debug.Log("Bắt đầu Tap tại tọa độ: " + startPos);
     }
 
     private void CancelTap(InputAction.CallbackContext cxt)
     {
         Vector2 endPos = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
-        Debug.Log("Thả tay tại tọa độ: " + endPos);
+        //Debug.Log("Thả tay tại tọa độ: " + endPos);
         CalculateSwipe(endPos);
     }
     private void CalculateSwipe(Vector2 endPos)
@@ -74,7 +74,7 @@ public class Movements : MonoBehaviour
             {
                 player.PlayerMovement(currentSwipe);
             }    
-            Debug.Log("Đang vuốt hướng " + currentSwipe);
+            //Debug.Log("Đang vuốt hướng " + currentSwipe);
         }
         else if(Time.time - startTime <= 0.2f)
         {
@@ -93,7 +93,7 @@ public class Movements : MonoBehaviour
         else
         {
             currentSwipe = MoveDirection.none;
-            Debug.Log("Không đủ khoảng cách để tính là Swipe!!!");
+            //Debug.Log("Không đủ khoảng cách để tính là Swipe!!!");
         }
 
     }

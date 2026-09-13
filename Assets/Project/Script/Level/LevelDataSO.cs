@@ -6,12 +6,15 @@ using UnityEngine;
 public class LevelDataSO : ScriptableObject
 {
     [SerializeField] private Vector2Int playerPosition;
+    [SerializeField] private Vector2Int goatPosition;
     [SerializeField] private int levelNumber;
     [SerializeField] private BoardData boardData;
     [SerializeField] private List<ObstacleModelData> obstacleList;
+
 
     public Vector2Int PlayerPosition => playerPosition;
     public int LevelNumber => levelNumber;
     public List<ObstacleModelData> ObstacleList => obstacleList;
     public BoardData BoardData => boardData;
+    public Vector2Int GoatPosition => goatPosition;
 }

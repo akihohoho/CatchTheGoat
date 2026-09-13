@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private BoardAppear boardAppear;
     [SerializeField] private ObstacleAppear obstacleAppear;
     [SerializeField] private PlayerController playerController;
+    private int currNumber = 0;
     public void LoadLevel(int levelNumber)
     {
         var level = levelList[levelNumber];
@@ -23,7 +24,8 @@ public class LevelManager : MonoBehaviour
             Vector3 position = boardAppear.GetWorldPosition(obstacle.positionInGrid.x, obstacle.positionInGrid.y);
             obstacleAppear.Spawn(position, obstacle.positionInGrid, obstacle.rotate, obstacle.data.Child);
         }
-
+        GameManager.Instance.SetEndPos(levelList[levelNumber].GoatPosition);
+        GameManager.Instance.SetPlayerPos(levelList[levelNumber].PlayerPosition);
         playerController.SetUpPlayer();
     }
 }
