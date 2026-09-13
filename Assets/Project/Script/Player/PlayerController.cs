@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         currentGridPos = levelSo.PlayerPosition;
         GridManager.Instance.OccupiedCells.Add(currentGridPos);
         Vector3 startPos = boardAppear.GetWorldPosition((int)levelSo.PlayerPosition.x, (int)levelSo.PlayerPosition.y);
-        startPos.y = 0.5f;
+        startPos.y = 1.5f;
         transform.position = startPos;
         Instantiate(playerPref, transform.position, Quaternion.identity, transform);
     }
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         currentGridPos = targetPos;
         isMoving = true;
         Vector3 targetWorldPos = boardAppear.GetWorldPosition(targetPos.x, targetPos.y);
-        targetWorldPos.y = 0.5f;
+        targetWorldPos.y = 1.5f;
 
         transform.DOMove(targetWorldPos, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
         {

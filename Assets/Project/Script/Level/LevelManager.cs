@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private BoardAppear boardAppear;
     [SerializeField] private ObstacleAppear obstacleAppear;
     [SerializeField] private PlayerController playerController;
-    private int currNumber = 0;
+    //private int currNumber = 0;
     public void LoadLevel(int levelNumber)
     {
         var level = levelList[levelNumber];
@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
         GridManager.Instance.SetBoard(board);
 
         boardAppear.DrawBoard(board);
+        obstacleAppear.ClearObs();
 
         var obstacleList = level.ObstacleList;
         foreach (var obstacle in obstacleList)

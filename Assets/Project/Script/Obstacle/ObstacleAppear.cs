@@ -13,4 +13,12 @@ public class ObstacleAppear : MonoBehaviour
         obsLogic.Spawn(positionInWorld + Vector3.up, root, currentRotate, child);
         obsList.Add(obsLogic);
     }
+    public void ClearObs()
+    {
+        for(int i = obsList.Count - 1; i >= 0; i--)
+        {
+            Destroy(obsList[i].gameObject);
+            obsList.RemoveAt(i);
+        }
+    }
 }

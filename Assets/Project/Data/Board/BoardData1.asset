@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df50f1c675f6e946a8b37b7b0150ed1, type: 3}
   m_Name: BoardData1
   m_EditorClassIdentifier: Assembly-CSharp::BoardData
-  boardSize: {x: 3, y: 3}
+  boardSize: {x: 5, y: 5}
   cellDistance: {x: 1, y: 1}
