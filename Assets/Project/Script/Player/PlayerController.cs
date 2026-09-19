@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] LevelDataSO levelSo;
     [SerializeField] BoardAppear boardAppear;
     [SerializeField] GameObject playerPref;
     private Vector2Int currentGridPos;
     public bool isMoving = false;
 
-    public void SetUpPlayer()
+    public void SetUpPlayer(LevelDataSO levelSO)
     {
-        currentGridPos = levelSo.PlayerPosition;
+        currentGridPos = levelSO.PlayerPosition;
         GridManager.Instance.OccupiedCells.Add(currentGridPos);
-        Vector3 startPos = boardAppear.GetWorldPosition((int)levelSo.PlayerPosition.x, (int)levelSo.PlayerPosition.y);
+        Vector3 startPos = boardAppear.GetWorldPosition(currentGridPos.x, currentGridPos.y);
         startPos.y = 1.5f;
         transform.position = startPos;
         Instantiate(playerPref, transform.position, Quaternion.identity, transform);
@@ -45,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
         if(targetPos == currentGridPos) return;
         GridManager.Instance.OccupiedCells.Remove(currentGridPos);
+        GridManager.Instance.OccupiedCells.Add(targetPos);
 
         currentGridPos = targetPos;
         isMoving = true;
@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
             GameManager.Instance.SetPlayerPos(currentGridPos);
-            GridManager.Instance.OccupiedCells.Add(currentGridPos);
         });
     }
 }

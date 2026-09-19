@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54523eba509320b4f890b1463e165011, type: 3}
+  m_Name: Level3
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
+  playerPosition: {x: 3, y: 0}
+  goatPosition: {x: 1, y: 0}
+  levelNumber: 3
+  boardData: {fileID: 11400000, guid: 8dda3e1f65f9cb44f840d7dca94cb9d0, type: 2}
+  obstacleList:
+  - positionInGrid: {x: 2, y: 1}
+    data: {fileID: 11400000, guid: f3d61026eae0d484196463096f5a2b10, type: 2}
+    rotate: 180
+  - positionInGrid: {x: 2, y: 5}
+    data: {fileID: 11400000, guid: 35a4e4e9e27112d47b86323d6fce37fb, type: 2}
+    rotate: 90
+  - positionInGrid: {x: 4, y: 2}
+    data: {fileID: 11400000, guid: e8c59e18e3f224e4f9a0078cd573e5b6, type: 2}
+    rotate: 90
+  - positionInGrid: {x: 1, y: 3}
+    data: {fileID: 11400000, guid: f3d61026eae0d484196463096f5a2b10, type: 2}
+    rotate: 90

@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => instance;
     private Vector2Int playerPos;
     private Vector2Int endPos;
+    private GameState currentState = GameState.NotGoing;
+
+    public GameState CurrentState => currentState;
     private void Awake()
     {
         if (instance == null)
@@ -30,6 +33,11 @@ public class GameManager : MonoBehaviour
             WinHandle();
         }
     }
+
+    public void ChangeStateGame(bool isPlay)
+    {
+        currentState = isPlay ? GameState.OnGoing : GameState.NotGoing;
+    }    
     private void WinHandle()
     {
         Debug.Log("Win");

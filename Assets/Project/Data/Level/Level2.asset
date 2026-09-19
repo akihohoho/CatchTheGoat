@@ -10,13 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54523eba509320b4f890b1463e165011, type: 3}
-  m_Name: LevelTest
+  m_Name: Level2
   m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
   playerPosition: {x: 0, y: 0}
-  goatPosition: {x: 9, y: 0}
-  levelNumber: 0
-  boardData: {fileID: 11400000, guid: aed6b0b4ca5bfa54393aac6c63613da8, type: 2}
+  goatPosition: {x: 5, y: 5}
+  levelNumber: 2
+  boardData: {fileID: 11400000, guid: e286209496b14d84484e80bc8d9cbf0b, type: 2}
   obstacleList:
+  - positionInGrid: {x: 2, y: 1}
+    data: {fileID: 11400000, guid: f3d61026eae0d484196463096f5a2b10, type: 2}
+    rotate: 180
   - positionInGrid: {x: 1, y: 2}
     data: {fileID: 11400000, guid: 35a4e4e9e27112d47b86323d6fce37fb, type: 2}
-    rotate: 0
+    rotate: 180
+  - positionInGrid: {x: 4, y: 2}
+    data: {fileID: 11400000, guid: 35a4e4e9e27112d47b86323d6fce37fb, type: 2}
+    rotate: 90
+  - positionInGrid: {x: 3, y: 4}
+    data: {fileID: 11400000, guid: 2b9ab360054dd194e8c6ad0bb2cbd089, type: 2}
+    rotate: 90

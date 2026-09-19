@@ -56,6 +56,20 @@ public class ObstacleLogic : MonoBehaviour, IInteractable
         }
         return result;
     }
+    private List<Vector2Int> GetSweptCells(List<Vector2Int> childPos, Vector2Int root, RotateType beforeRotate, RotateType afterRotate)
+    {
+        List<Vector2Int> corners = new List<Vector2Int>();
+        foreach(Vector2Int cell in childPos)
+        {
+            Vector2Int oldpos = RotateOffset(cell, beforeRotate) + root;
+            Vector2Int newPos = RotateOffset(cell, afterRotate) + root;
+
+            corners.Add(new Vector2Int(oldpos.x, newPos.y));
+            corners.Add(new Vector2Int(newPos.x, oldpos.y));
+        }
+
+        return corners;
+    }
 
     [ContextMenu("Rotate")]
 
@@ -65,8 +79,14 @@ public class ObstacleLogic : MonoBehaviour, IInteractable
         GridManager.Instance.UnregisterCells(currentOccupiedCells);
 
         RotateType nextRotation = (RotateType)(((int)currentRotation + 90) % 360);
+
         List<Vector2Int> nextOccupiedCells = GetOccupiedCells(childPosition, root, nextRotation);
-        bool isBlocked = StopRotate(nextOccupiedCells);
+        List<Vector2Int> sweptCells = GetSweptCells(childPosition,root, currentRotation, nextRotation);
+
+        List<Vector2Int> cellsToCheck = new List<Vector2Int>(nextOccupiedCells);
+        cellsToCheck.AddRange(sweptCells);
+
+        bool isBlocked = StopRotate(cellsToCheck);
 
         if (isBlocked)
         {

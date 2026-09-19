@@ -32,6 +32,7 @@ public class BoardAppear : MonoBehaviour
     }
     public Vector3 GetWorldPosition(int x, int y)
     {
+        if(!boardData) return Vector3.zero;
         float posX = (x - (boardData.BoardSize.x - 1) / 2) * boardData.CellDistance.x;
         float posY = (y - (boardData.BoardSize.y - 1) / 2) * boardData.CellDistance.y;
 

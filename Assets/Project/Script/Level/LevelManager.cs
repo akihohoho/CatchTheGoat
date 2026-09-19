@@ -4,17 +4,20 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [Header("Level List")]
-    [SerializeField] private List<LevelDataSO> levelList;
+    public List<LevelDataSO> levelList;
 
     [SerializeField] private BoardAppear boardAppear;
     [SerializeField] private ObstacleAppear obstacleAppear;
     [SerializeField] private PlayerController playerController;
-    //private int currNumber = 0;
+    [SerializeField] private GoatController goatController;
+    private int currNumber = 0;
+    public LevelDataSO currentLevel => levelList[currNumber];
     public void LoadLevel(int levelNumber)
     {
+        currNumber = levelNumber;
         var level = levelList[levelNumber];
         var board = level.BoardData;
-        GridManager.Instance.SetBoard(board);
+        GridManager.Instance.SetBoard(currentLevel.BoardData);
 
         boardAppear.DrawBoard(board);
         obstacleAppear.ClearObs();
@@ -27,6 +30,7 @@ public class LevelManager : MonoBehaviour
         }
         GameManager.Instance.SetEndPos(levelList[levelNumber].GoatPosition);
         GameManager.Instance.SetPlayerPos(levelList[levelNumber].PlayerPosition);
-        playerController.SetUpPlayer();
+        goatController.SetUpGoat(currentLevel);
+        playerController.SetUpPlayer(currentLevel);
     }
 }

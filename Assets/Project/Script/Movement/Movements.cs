@@ -45,6 +45,7 @@ public class Movements : MonoBehaviour
 
     private void StartTap(InputAction.CallbackContext cxt)
     {
+        if (GameManager.Instance.CurrentState != GameState.OnGoing) return;
         startPos = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
         startTime = Time.time;
         //Debug.Log("Bắt đầu Tap tại tọa độ: " + startPos);
@@ -52,6 +53,7 @@ public class Movements : MonoBehaviour
 
     private void CancelTap(InputAction.CallbackContext cxt)
     {
+        if (GameManager.Instance.CurrentState != GameState.OnGoing) return;
         Vector2 endPos = playerControls.Touch.PrimaryPosition.ReadValue<Vector2>();
         //Debug.Log("Thả tay tại tọa độ: " + endPos);
         CalculateSwipe(endPos);
